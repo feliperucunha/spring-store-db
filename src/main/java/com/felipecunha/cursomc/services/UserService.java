@@ -33,4 +33,9 @@ public class UserService {
 	public User fromDTO(UserDTO objDto) { //não está no UserDTO, pois por aqui pode acessar também o banco de dados
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
+	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
 }
