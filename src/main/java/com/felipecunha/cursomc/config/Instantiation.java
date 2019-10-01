@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.felipecunha.cursomc.domain.Post;
 import com.felipecunha.cursomc.domain.User;
+import com.felipecunha.cursomc.dto.AuthorDTO;
 import com.felipecunha.cursomc.repository.PostRepository;
 import com.felipecunha.cursomc.repository.UserRepository;
 
@@ -35,10 +36,12 @@ public class Instantiation implements CommandLineRunner {
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vê se morre!", maria);
-		Post post2 = new Post(null, sdf.parse("22/03/2018"), "Bora pra Viagem", "Vê se morre logo!", maria);
-
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vê se morre!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("22/03/2018"), "Bora pra Viagem", "Vê se morre logo!", new AuthorDTO(maria));
+
+		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
 	}
